@@ -50,9 +50,9 @@ jobs:
       - deploy_create_react_app_to_aws:
           s3bucket: "s3://timavera.is"
           cloudFrontID: "ABCD1234"
-  timavera-com:
-    executor: alpine37
-    steps:
-      - deploy_create_react_app_to_aws:
-          s3bucket: "s3://timavera.com"
-          cloudFrontID: "ABCD1234"
+#  timavera-com:
+#    executor: alpine37
+#    steps:
+#      - deploy_create_react_app_to_aws:
+#          s3bucket: "s3://timavera.com"
+#          cloudFrontID: "ABCD1234"
