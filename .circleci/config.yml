@@ -26,14 +26,13 @@ commands:
       - run:
           name: Step 1
           command: |
-            echo "Command 1"
+            ENVIRONMENT="staging"
 
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
-              #circleci step halt
-              echo "Deploying to production"
+              ENVIRONMENT="production"
             fi
 
-            echo "Deploying to staging"
+            echo "Deploying to ${ENVIRONMENT}"
 
       - run:
           name: Step 2
