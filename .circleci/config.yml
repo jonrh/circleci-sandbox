@@ -17,7 +17,7 @@ jobs:
           name: Step 1
           command: |
             echo "Command 1"
-            echo <<parameters.s3bucket>>
+            echo "The S3 URL is: <<parameters.s3bucket>>"
       - run:
           name: Step 2
           command: echo "Command 2"
