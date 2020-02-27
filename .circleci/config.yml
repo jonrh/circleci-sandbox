@@ -8,18 +8,25 @@ jobs:
   SimpleJob:
     docker:
       - image: alpine:3.7
+    parameters:
+      s3bucket:
+        type: string
+        default: ""
     steps:
       - run:
           name: Step 1
-          command: echo "Command 1"
+          command: |
+            echo "Command 1"
+            echo <<parameters.s3bucket>>
       - run:
           name: Step 2
           command: echo "Command 2"
 
 workflows:
-  workflowA:
+  WorkflowA:
     jobs:
       - welcome/run
-  workflowB:
+  WorkflowB:
     jobs:
-      - SimpleJob
+      - SimpleJob:
+          s3bucket: "s3://sampleBucketURL.com"
