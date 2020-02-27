@@ -23,7 +23,11 @@ jobs:
           name: Step 1
           command: |
             echo "Command 1"
-            echo "The S3 URL is: <<parameters.s3bucket>>"
+
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              circleci step halt
+            fi
+
       - run:
           name: Step 2
           command: |
