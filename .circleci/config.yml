@@ -5,13 +5,19 @@ orbs:
   welcome: circleci/welcome-orb@0.4.1
 
 jobs:
-  SimpleJob:
+  DeployCreateReactAppToAWS:
     docker:
       - image: alpine:3.7
     parameters:
       s3bucket:
         type: string
         default: ""
+      cloudFrontID:
+        type: string
+        default: ""
+      language:
+        type: string
+        default: "en"
     steps:
       - run:
           name: Step 1
@@ -20,7 +26,11 @@ jobs:
             echo "The S3 URL is: <<parameters.s3bucket>>"
       - run:
           name: Step 2
-          command: echo "Command 2"
+          command: |
+            echo "Command 2"
+            echo "S3 bucket URL: <<parameters.s3bucket>>"
+            echo "CloufFront distribution ID: <<parameters.cloudFrontID>>"
+            echo "Language: <<parameters.language>>"
 
 workflows:
   WorkflowA:
@@ -28,5 +38,6 @@ workflows:
       - welcome/run
   WorkflowB:
     jobs:
-      - SimpleJob:
+      - DeployCreateReactAppToAWS:
           s3bucket: "s3://sampleBucketURL.com"
+          cloudFrontID: "ABCD1234"
